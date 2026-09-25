@@ -1,0 +1,8 @@
+/* FreemiumPDF ad containers: clean, compact and clearly labeled. */
+.ad-slot{--ad-border:#dfe7f1;--ad-bg:#f8fbff;--ad-label:#8290a3;box-sizing:border-box;width:100%;margin:22px auto;display:flex;flex-direction:column;align-items:center;gap:6px}
+.ad-slot__label{font:600 9px/1 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ad-label)}
+.ad-slot__unit{width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--ad-border);border-radius:14px;background:var(--ad-bg);min-height:90px}
+.ad-slot__placeholder{font:500 12px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;color:#a2adbd;text-align:center;padding:9px 14px}
+.ad-slot--leaderboard{max-width:970px}.ad-slot--leaderboard .ad-slot__unit{min-height:72px}
+.ad-slot--incontent{max-width:728px}.ad-slot--incontent .ad-slot__unit{min-height:250px}
+@media(max-width:600px){.ad-slot{margin:16px auto}.ad-slot--incontent .ad-slot__unit{min-height:180px}.ad-slot--leaderboard .ad-slot__unit{min-height:60px}}

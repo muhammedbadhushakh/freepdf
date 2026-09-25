@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/assets/cookie-consent.js"></script>
+
+<!-- global-footer-css -->
+<link rel="stylesheet" href="/assets/global-footer.css">
+<!-- ad-slot-css -->
+<link rel="stylesheet" href="/assets/ads.css">
+<!-- AD NETWORK: paste your ad network's header/verification/auto-ads script here (e.g. Google AdSense) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Redact PDF | FreemiumPDF</title>
+<meta name="description" content="Permanently black out sensitive text or images in a PDF. Redacted pages are rebuilt as flattened images so the covered content cannot be recovered.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="css/pdftool.css">
+<link rel="canonical" href="https://freemiumpdf.netlify.app/tools/pdf-tools/redact-pdf.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="https://freemiumpdf.netlify.app/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="https://freemiumpdf.netlify.app/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FreemiumPDF">
+<meta property="og:title" content="Redact PDF | FreemiumPDF">
+<meta property="og:description" content="Permanently black out sensitive text or images in a PDF. Redacted pages are rebuilt as flattened images so the covered content cannot be recovered.">
+<meta property="og:url" content="https://freemiumpdf.netlify.app/tools/pdf-tools/redact-pdf.html">
+<meta property="og:image" content="https://freemiumpdf.netlify.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Redact PDF | FreemiumPDF">
+<meta name="twitter:description" content="Permanently black out sensitive text or images in a PDF. Redacted pages are rebuilt as flattened images so the covered content cannot be recovered.">
+<meta name="twitter:image" content="https://freemiumpdf.netlify.app/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Redact PDF",
+  "url": "https://freemiumpdf.netlify.app/tools/pdf-tools/redact-pdf.html",
+  "description": "Permanently black out sensitive text or images in a PDF. Redacted pages are rebuilt as flattened images so the covered content cannot be recovered.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (Web-based)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "isPartOf": { "@type": "WebSite", "name": "FreemiumPDF", "url": "https://freemiumpdf.netlify.app/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "FreemiumPDF", "item": "https://freemiumpdf.netlify.app/" },
+    { "@type": "ListItem", "position": 2, "name": "PDF Tools", "item": "https://freemiumpdf.netlify.app/tools/pdf-tools/index.html" },
+    { "@type": "ListItem", "position": 3, "name": "Redact PDF", "item": "https://freemiumpdf.netlify.app/tools/pdf-tools/redact-pdf.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is Redact PDF free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Redact PDF is completely free, with no sign-up, watermark, or software install required." } },
+    { "@type": "Question", "name": "Is my file safe when I use Redact PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Redact PDF runs entirely in your browser using client-side JavaScript, so your file is never uploaded to a server or stored anywhere." } },
+    { "@type": "Question", "name": "Does Redact PDF work on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Redact PDF works in any modern browser on desktop, phone, or tablet \u2014 no app needed." } }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/assets/cookie-consent.css">
+</head>
+<body data-tool="redact">
+<!-- ad-slot-leaderboard -->
+<div class="ad-slot ad-slot--leaderboard" aria-label="Advertisement">
+  <span class="ad-slot__label">Advertisement</span>
+  <div class="ad-slot__unit"><span class="ad-slot__placeholder">Ad space &middot; 728&times;90</span></div>
+</div>
+<div class="ad-slot ad-slot--skyscraper ad-slot--left" aria-label="Advertisement">
+  <span class="ad-slot__label">Ad</span>
+  <div class="ad-slot__unit"><span class="ad-slot__placeholder">160&times;600</span></div>
+</div>
+<div class="ad-slot ad-slot--skyscraper ad-slot--right" aria-label="Advertisement">
+  <span class="ad-slot__label">Ad</span>
+  <div class="ad-slot__unit"><span class="ad-slot__placeholder">160&times;600</span></div>
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="../../index.html" class="brand-link"><span class="brand-mark"><i class="fa-solid fa-wrench"></i></span> FreemiumPDF</a>
+    <span class="crumb">/ PDF Tools / Redact PDF</span>
+  </div>
+</div>
+
+<main class="page-wrap" style="max-width:1100px;">
+  <div class="calc-head">
+    <h1>Redact PDF</h1>
+    <p>Draw black boxes over sensitive content, then download a copy with that content permanently removed.</p>
+  </div>
+
+  <div class="calc-layout">
+    <div class="calc-card">
+      <div class="dropzone" id="dropzone">
+        <i class="fa-solid fa-file-arrow-up" style="font-size:28px;color:var(--blue-600);margin-bottom:10px;"></i>
+        <p><strong>Click to upload</strong> or drag &amp; drop a PDF file</p>
+        <button type="button" class="dropzone-browse-btn">Browse Files</button>
+        <input type="file" id="fileInput" accept="application/pdf" hidden>
+      </div>
+      <div class="file-info" id="fileInfo" style="display:none;">
+        <i class="fa-solid fa-file-pdf" style="color:var(--red)"></i>
+        <span id="fileName"></span>
+        <button class="remove" id="removeFile">Remove</button>
+      </div>
+
+      <div id="redactArea" style="display:none;">
+        <p class="hint">Draw black boxes over anything you want permanently removed. Use the page arrows to move between pages — boxes are kept per page. The output is rebuilt as flattened page images, so redacted content cannot be recovered.</p>
+        <div class="toolbar-row">
+          <button class="calc-btn btn-secondary" id="prevPage">&larr; Prev</button>
+          <span class="hint" id="pageIndicator" style="align-self:center"></span>
+          <button class="calc-btn btn-secondary" id="nextPage">Next &rarr;</button>
+          <button class="calc-btn btn-secondary" id="undoBox">Undo last box</button>
+          <button class="calc-btn btn-secondary" id="clearBoxes">Clear page boxes</button>
+        </div>
+        <div style="position:relative;display:inline-block;max-width:100%;margin-top:10px">
+          <canvas id="pageCanvas" style="display:block;max-width:100%;border:1px solid var(--line,#e5e7eb);cursor:crosshair"></canvas>
+        </div>
+        <button class="calc-btn" id="redactBtn" style="margin-top:16px;display:block">Apply redactions &amp; download</button>
+        <div class="progress-bar" id="progressBar"><div class="fill" id="progressFill"></div></div>
+        <div class="download-box" id="downloadBox">
+          <i class="fa-solid fa-circle-check" style="color:var(--green)"></i>
+          <span class="name" id="downloadName">Ready</span>
+          <a id="downloadLink" download>Download PDF</a>
+        </div>
+      </div>
+    </div>
+    <aside class="side-card" id="calcSidebar"></aside>
+  </div>
+</main>
+
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="js/pdftool-common.js"></script>
+<script type="module">
+  import { loadPdfJsDoc, renderPageToCanvas } from './js/pdftool-render.mjs';
+  const { PDFDocument } = PDFLib;
+
+  let pdfjsDoc = null;
+  let numPages = 0;
+  let current = 1;
+  const boxesByPage = {}; // page -> [{x,y,w,h} in canvas px]
+  const canvas = document.getElementById('pageCanvas');
+  const ctx = canvas.getContext('2d');
+  let baseImage = null; // ImageBitmap of current rendered page (no boxes)
+
+  async function renderCurrentPage() {
+    await renderPageToCanvas(pdfjsDoc, current, canvas, 640);
+    baseImage = await createImageBitmap(canvas);
+    drawBoxes();
+    document.getElementById('pageIndicator').textContent = `Page ${current} of ${numPages}`;
+  }
+
+  function drawBoxes() {
+    ctx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#000';
+    (boxesByPage[current] || []).forEach(b => ctx.fillRect(b.x, b.y, b.w, b.h));
+  }
+
+  let dragStart = null;
+  canvas.addEventListener('mousedown', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width, scaleY = canvas.height / rect.height;
+    dragStart = { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+  });
+  canvas.addEventListener('mousemove', (e) => {
+    if (!dragStart) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width, scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX, y = (e.clientY - rect.top) * scaleY;
+    drawBoxes();
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.fillRect(Math.min(dragStart.x,x), Math.min(dragStart.y,y), Math.abs(x-dragStart.x), Math.abs(y-dragStart.y));
+  });
+  window.addEventListener('mouseup', (e) => {
+    if (!dragStart) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width, scaleY = canvas.height / rect.height;
+    const x = Math.min(Math.max((e.clientX - rect.left) * scaleX, 0), canvas.width);
+    const y = Math.min(Math.max((e.clientY - rect.top) * scaleY, 0), canvas.height);
+    const box = { x: Math.min(dragStart.x, x), y: Math.min(dragStart.y, y), w: Math.abs(x - dragStart.x), h: Math.abs(y - dragStart.y) };
+    dragStart = null;
+    if (box.w > 4 && box.h > 4) {
+      (boxesByPage[current] = boxesByPage[current] || []).push(box);
+    }
+    drawBoxes();
+  });
+
+  async function handleFile(file) {
+    document.getElementById('fileInfo').style.display = 'flex';
+    document.getElementById('fileName').textContent = file.name + ' • ' + formatBytes(file.size);
+    document.getElementById('dropzone').style.display = 'none';
+    document.getElementById('downloadBox').classList.remove('show');
+
+    const bytes = await file.arrayBuffer();
+    window.__originalBytes = bytes;
+    pdfjsDoc = await loadPdfJsDoc(bytes.slice(0));
+    numPages = pdfjsDoc.numPages;
+    current = 1;
+    Object.keys(boxesByPage).forEach(k => delete boxesByPage[k]);
+    await renderCurrentPage();
+    document.getElementById('redactArea').style.display = 'block';
+  }
+
+  document.getElementById('prevPage').addEventListener('click', async () => { if (current > 1) { current--; await renderCurrentPage(); } });
+  document.getElementById('nextPage').addEventListener('click', async () => { if (current < numPages) { current++; await renderCurrentPage(); } });
+  document.getElementById('undoBox').addEventListener('click', () => { (boxesByPage[current] || []).pop(); drawBoxes(); });
+  document.getElementById('clearBoxes').addEventListener('click', () => { boxesByPage[current] = []; drawBoxes(); });
+
+  document.getElementById('redactBtn').addEventListener('click', async () => {
+    const progressBar = document.getElementById('progressBar');
+    progressBar.classList.add('show');
+    document.getElementById('progressFill').style.width = '10%';
+
+    const newDoc = await PDFDocument.create();
+    const renderCanvas = document.createElement('canvas');
+    for (let i = 1; i <= numPages; i++) {
+      await renderPageToCanvas(pdfjsDoc, i, renderCanvas, 1500);
+      const rctx = renderCanvas.getContext('2d');
+      const scaleX = renderCanvas.width / canvas.width, scaleY = renderCanvas.height / canvas.height;
+      rctx.fillStyle = '#000';
+      (boxesByPage[i] || []).forEach(b => {
+        rctx.fillRect(b.x * scaleX, b.y * scaleY, b.w * scaleX, b.h * scaleY);
+      });
+      const jpgData = renderCanvas.toDataURL('image/jpeg', 0.92);
+      const jpgBytes = Uint8Array.from(atob(jpgData.split(',')[1]), c => c.charCodeAt(0));
+      const img = await newDoc.embedJpg(jpgBytes);
+      const page = newDoc.addPage([img.width, img.height]);
+      page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+      document.getElementById('progressFill').style.width = (10 + (i / numPages) * 80) + '%';
+    }
+
+    const outBytes = await newDoc.save();
+    document.getElementById('progressFill').style.width = '100%';
+    const blob = new Blob([outBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    document.getElementById('downloadLink').href = url;
+    document.getElementById('downloadLink').download = 'redacted.pdf';
+    document.getElementById('downloadName').textContent = `${numPages} pages • ${formatBytes(blob.size)}`;
+    document.getElementById('downloadBox').classList.add('show');
+    setTimeout(() => progressBar.classList.remove('show'), 600);
+  });
+
+  document.getElementById('removeFile').addEventListener('click', () => {
+    pdfjsDoc = null; numPages = 0; current = 1;
+    Object.keys(boxesByPage).forEach(k => delete boxesByPage[k]);
+    document.getElementById('fileInfo').style.display = 'none';
+    document.getElementById('dropzone').style.display = 'block';
+    document.getElementById('redactArea').style.display = 'none';
+    document.getElementById('fileInput').value = '';
+  });
+
+  setupDropzone('dropzone', 'fileInput', handleFile);
+</script>
+
+<!-- ad-slot-incontent -->
+<div class="ad-slot ad-slot--incontent" aria-label="Advertisement">
+  <span class="ad-slot__label">Advertisement</span>
+  <div class="ad-slot__unit"><span class="ad-slot__placeholder">Ad space &middot; 300&times;250</span></div>
+</div>
+
+<section class="tool-guide">
+  <h2>How to use Redact PDF</h2>
+  <ol class="tool-guide__steps">
+      <li>Click the upload area and choose your file, or drag and drop it in.</li>
+      <li>Redact PDF processes the file directly in your browser using client-side code — nothing is uploaded to a server.</li>
+      <li>Review the result, then click Download to save it to your device.</li>
+  </ol>
+  <h2>Frequently Asked Questions</h2>
+  <div class="tool-guide__faq">
+      <div class="faq-item">
+        <h3>Is Redact PDF free to use?</h3>
+        <p>Yes, Redact PDF is completely free, with no sign-up, watermark, or software install required.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my file safe when I use Redact PDF?</h3>
+        <p>Yes. Redact PDF runs entirely in your browser using client-side JavaScript, so your file is never uploaded to a server or stored anywhere.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does Redact PDF work on mobile?</h3>
+        <p>Yes, Redact PDF works in any modern browser on desktop, phone, or tablet — no app needed.</p>
+      </div>
+  </div>
+</section>
+
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul class="related-tools__list">
+      <li><a href="crop-pdf.html">Crop PDF</a></li>
+      <li><a href="pdf-watermark.html">Watermark PDF</a></li>
+      <li><a href="../pdf-protector/index.html">Protect PDF</a></li>
+      <li><a href="compress-pdf.html">Compress PDF</a></li>
+      <li><a href="pdf-metadata-editor.html">PDF Metadata Editor</a></li>
+  </ul>
+</section>
+
+<!-- toolora-global-footer -->
+<footer class="toolora-global-footer">
+  <div class="tgf-links"><a href="/index.html">Home</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms of Service</a><a href="/disclaimer.html">Disclaimer</a></div>
+  <p class="tgf-copy">&copy; 2026 FreemiumPDF. All rights reserved.</p>
+</footer>
+</body>
+</html>

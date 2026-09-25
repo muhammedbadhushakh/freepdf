@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PDF to Markdown | FreemiumPDF</title>
+<meta name="description" content="Convert a PDF to Markdown text, free and in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="css/pdftool.css">
+<link rel="canonical" href="https://freemiumpdf.netlify.app/tools/pdf-tools/pdf-to-markdown.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="https://freemiumpdf.netlify.app/assets/favicon-32.png">
+<link rel="stylesheet" href="/assets/global-footer.css">
+</head>
+<body data-tool="pdf2md">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="../../index.html" class="brand-link"><span class="brand-mark"><i class="fa-solid fa-wrench"></i></span> FreemiumPDF</a>
+    <span class="crumb">/ PDF Tools / PDF to Markdown</span>
+  </div>
+</div>
+<main class="page-wrap" style="max-width:1100px;">
+  <div class="calc-head">
+    <h1>PDF to Markdown</h1>
+    <p>Extract the text of your PDF into a Markdown file.</p>
+  </div>
+  <div class="calc-layout">
+    <div class="calc-card">
+<div class="dropzone" id="dropzone">
+  <i class="fa-solid fa-file-arrow-up" style="font-size:28px;color:var(--blue-600);margin-bottom:10px;"></i>
+  <p><strong>Click to upload</strong> or drag &amp; drop a PDF file</p>
+  <button type="button" class="dropzone-browse-btn">Browse Files</button>
+  <input type="file" id="fileInput" accept="application/pdf" hidden>
+</div>
+<div class="file-info" id="fileInfo" style="display:none;">
+  <i class="fa-solid fa-file-pdf" style="color:var(--red)"></i>
+  <span id="fileName"></span>
+  <button class="remove" id="removeFile">Remove</button>
+</div>
+<div class="progress-bar" id="progressBar"><div class="fill" id="progressFill"></div></div>
+<div class="download-box" id="downloadBox">
+  <i class="fa-solid fa-circle-check" style="color:var(--green)"></i>
+  <span class="name" id="downloadName">Ready</span>
+  <a id="downloadLink" download>Download</a>
+</div>
+
+    </div>
+    <aside class="side-card" id="calcSidebar"></aside>
+  </div>
+</main>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="js/pdftool-common.js"></script>
+<script type="module">
+  import { loadPdfJsDoc } from './js/pdftool-render.mjs';
+  setupDropzone('dropzone','fileInput', async (file) => {
+    document.getElementById('fileInfo').style.display='flex';
+    document.getElementById('fileName').textContent = file.name + ' • ' + formatBytes(file.size);
+    document.getElementById('dropzone').style.display='none';
+    const bar = document.getElementById('progressBar'); document.getElementById('progressFill').style.width='30%'; bar.classList.add('show');
+    const bytes = await file.arrayBuffer();
+    const pdfjsDoc = await loadPdfJsDoc(bytes);
+    let md = '';
+    for (let i = 1; i <= pdfjsDoc.numPages; i++) {
+      const page = await pdfjsDoc.getPage(i);
+      const content = await page.getTextContent();
+      const lines = [];
+      let cur = '', lastY = null;
+      content.items.forEach(it => {
+        if (lastY !== null && Math.abs(it.transform[5]-lastY) > 3) { lines.push(cur); cur=''; }
+        cur += it.str + ' ';
+        lastY = it.transform[5];
+      });
+      if (cur) lines.push(cur);
+      md += '## Page ' + i + '\n\n' + lines.filter(l=>l.trim()).join('\n\n') + '\n\n---\n\n';
+      document.getElementById('progressFill').style.width = Math.round(20 + 70*(i/pdfjsDoc.numPages)) + '%';
+    }
+    document.getElementById('progressFill').style.width='100%';
+    const blob = new Blob([md], {type:'text/markdown'});
+    const name = file.name.replace(/\.pdf$/i,'') + '.md';
+    triggerDownload(blob, name);
+    document.getElementById('downloadBox').classList.add('show');
+    document.getElementById('downloadName').textContent = name;
+    document.getElementById('downloadLink').href = URL.createObjectURL(blob);
+    document.getElementById('downloadLink').download = name;
+  });
+  document.getElementById('removeFile').addEventListener('click', () => location.reload());
+  </script>
+</body>
+</html>

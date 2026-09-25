@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://freemiumpdf.netlify.app/sitemap.xml

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PDF Viewer/Reader | FreemiumPDF</title>
+<meta name="description" content="Free online PDF viewer — open and read PDF files in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="css/pdftool.css">
+<link rel="canonical" href="https://freemiumpdf.netlify.app/tools/pdf-tools/pdf-viewer.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="https://freemiumpdf.netlify.app/assets/favicon-32.png">
+<link rel="stylesheet" href="/assets/global-footer.css">
+</head>
+<body data-tool="viewer">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="../../index.html" class="brand-link"><span class="brand-mark"><i class="fa-solid fa-wrench"></i></span> FreemiumPDF</a>
+    <span class="crumb">/ PDF Tools / PDF Viewer/Reader</span>
+  </div>
+</div>
+<main class="page-wrap" style="max-width:1100px;">
+  <div class="calc-head">
+    <h1>PDF Viewer/Reader</h1>
+    <p>Open and read a PDF right in your browser, no upload required.</p>
+  </div>
+  <div class="calc-layout">
+    <div class="calc-card">
+<div class="dropzone" id="dropzone">
+  <i class="fa-solid fa-file-arrow-up" style="font-size:28px;color:var(--blue-600);margin-bottom:10px;"></i>
+  <p><strong>Click to upload</strong> or drag &amp; drop a PDF file</p>
+  <button type="button" class="dropzone-browse-btn">Browse Files</button>
+  <input type="file" id="fileInput" accept="application/pdf" hidden>
+</div>
+<div class="file-info" id="fileInfo" style="display:none;">
+  <i class="fa-solid fa-file-pdf" style="color:var(--red)"></i>
+  <span id="fileName"></span>
+  <button class="remove" id="removeFile">Remove</button>
+</div>
+
+  <div id="viewerArea" style="display:none;">
+    <div class="toolbar-row" style="align-items:center;gap:10px;">
+      <button class="calc-btn btn-secondary" id="prevBtn">&larr; Prev</button>
+      <span class="hint" id="pageIndicator" style="align-self:center;"></span>
+      <button class="calc-btn btn-secondary" id="nextBtn">Next &rarr;</button>
+      <button class="calc-btn btn-secondary" id="zoomOut">-</button>
+      <span class="hint" id="zoomLevel" style="align-self:center;">100%</span>
+      <button class="calc-btn btn-secondary" id="zoomIn">+</button>
+    </div>
+    <div style="overflow:auto;max-height:75vh;border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;background:#f3f4f6;">
+      <canvas id="viewCanvas" style="box-shadow:0 2px 12px rgba(0,0,0,.15);background:#fff;"></canvas>
+    </div>
+  </div>
+  
+    </div>
+    <aside class="side-card" id="calcSidebar"></aside>
+  </div>
+</main>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="js/pdftool-common.js"></script>
+<script type="module">
+  import { loadPdfJsDoc } from './js/pdftool-render.mjs';
+  let pdfjsDoc = null, curPage = 1, scale = 1.2;
+  setupDropzone('dropzone','fileInput', async (file) => {
+    document.getElementById('fileInfo').style.display='flex';
+    document.getElementById('fileName').textContent = file.name + ' • ' + formatBytes(file.size);
+    document.getElementById('dropzone').style.display='none';
+    const bytes = await file.arrayBuffer();
+    pdfjsDoc = await loadPdfJsDoc(bytes);
+    curPage = 1;
+    document.getElementById('viewerArea').style.display='block';
+    await renderCurrent();
+  });
+  document.getElementById('removeFile').addEventListener('click', () => location.reload());
+  async function renderCurrent() {
+    const page = await pdfjsDoc.getPage(curPage);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.getElementById('viewCanvas');
+    canvas.width = viewport.width; canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    document.getElementById('pageIndicator').textContent = 'Page ' + curPage + ' of ' + pdfjsDoc.numPages;
+    document.getElementById('zoomLevel').textContent = Math.round(scale*100/1.2) + '%';
+  }
+  document.getElementById('prevBtn').addEventListener('click', () => { if (curPage>1) { curPage--; renderCurrent(); } });
+  document.getElementById('nextBtn').addEventListener('click', () => { if (pdfjsDoc && curPage<pdfjsDoc.numPages) { curPage++; renderCurrent(); } });
+  document.getElementById('zoomIn').addEventListener('click', () => { scale = Math.min(scale*1.2, 4); renderCurrent(); });
+  document.getElementById('zoomOut').addEventListener('click', () => { scale = Math.max(scale/1.2, 0.4); renderCurrent(); });
+  </script>
+</body>
+</html>

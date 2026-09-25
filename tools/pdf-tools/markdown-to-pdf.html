@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Markdown to PDF | FreemiumPDF</title>
+<meta name="description" content="Convert Markdown to PDF, free and in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="css/pdftool.css">
+<link rel="canonical" href="https://freemiumpdf.netlify.app/tools/pdf-tools/markdown-to-pdf.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="https://freemiumpdf.netlify.app/assets/favicon-32.png">
+<link rel="stylesheet" href="/assets/global-footer.css">
+</head>
+<body data-tool="md2pdf">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="../../index.html" class="brand-link"><span class="brand-mark"><i class="fa-solid fa-wrench"></i></span> FreemiumPDF</a>
+    <span class="crumb">/ PDF Tools / Markdown to PDF</span>
+  </div>
+</div>
+<main class="page-wrap" style="max-width:1100px;">
+  <div class="calc-head">
+    <h1>Markdown to PDF</h1>
+    <p>Convert Markdown text into a formatted, downloadable PDF.</p>
+  </div>
+  <div class="calc-layout">
+    <div class="calc-card">
+
+  <div class="field">
+    <label>Markdown text</label>
+    <textarea id="mdInput" rows="14" style="width:100%;font-family:monospace;font-size:13.5px;padding:12px;border:1px solid var(--border);border-radius:10px;" placeholder="# Title
+
+Write or paste your Markdown here..."></textarea>
+  </div>
+  <button class="calc-btn" id="runBtn">Convert to PDF</button>
+  <div class="progress-bar" id="progressBar"><div class="fill" id="progressFill"></div></div>
+<div class="download-box" id="downloadBox">
+  <i class="fa-solid fa-circle-check" style="color:var(--green)"></i>
+  <span class="name" id="downloadName">Ready</span>
+  <a id="downloadLink" download>Download</a>
+</div>
+
+    </div>
+    <aside class="side-card" id="calcSidebar"></aside>
+  </div>
+</main>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="js/pdftool-common.js"></script>
+<script>
+  document.getElementById('runBtn').addEventListener('click', async () => {
+    const bar = document.getElementById('progressBar'); document.getElementById('progressFill').style.width='40%'; bar.classList.add('show');
+    const md = document.getElementById('mdInput').value || '';
+    const doc = await PDFLib.PDFDocument.create();
+    const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+    const boldFont = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+    const pageW = 595.28, pageH = 841.89, margin = 56;
+    let page = doc.addPage([pageW, pageH]);
+    let y = pageH - margin;
+    function wrapText(text, f, size, maxWidth) {
+      const words = text.split(/\s+/);
+      const lines = []; let line = '';
+      words.forEach(w => {
+        const test = line ? line + ' ' + w : w;
+        if (f.widthOfTextAtSize(test, size) > maxWidth && line) { lines.push(line); line = w; }
+        else line = test;
+      });
+      if (line) lines.push(line);
+      return lines;
+    }
+    function newPageIfNeeded(lineHeight) {
+      if (y < margin + lineHeight) { page = doc.addPage([pageW, pageH]); y = pageH - margin; }
+    }
+    const rawLines = md.split(/\n/);
+    for (const raw of rawLines) {
+      let line = raw;
+      if (!line.trim()) { y -= 10; continue; }
+      let size = 11.5, f = font, prefix = '';
+      if (/^###\s+/.test(line)) { size = 14; f = boldFont; line = line.replace(/^###\s+/,''); }
+      else if (/^##\s+/.test(line)) { size = 17; f = boldFont; line = line.replace(/^##\s+/,''); }
+      else if (/^#\s+/.test(line)) { size = 21; f = boldFont; line = line.replace(/^#\s+/,''); }
+      else if (/^[-*]\s+/.test(line)) { prefix = '•  '; line = line.replace(/^[-*]\s+/,''); }
+      line = line.replace(/\*\*(.*?)\*\*/g, '$1');
+      const wrapped = wrapText(prefix + line, f, size, pageW - margin*2);
+      for (const w of wrapped) {
+        newPageIfNeeded(size + 6);
+        page.drawText(w, { x: margin, y, size, font: f, color: PDFLib.rgb(0.1,0.1,0.12) });
+        y -= size + 6;
+      }
+      y -= 4;
+    }
+    const out = await doc.save();
+    document.getElementById('progressFill').style.width='100%';
+    const blob = new Blob([out], {type:'application/pdf'});
+    triggerDownload(blob, 'document.pdf');
+    document.getElementById('downloadBox').classList.add('show');
+    document.getElementById('downloadName').textContent = 'document.pdf';
+    document.getElementById('downloadLink').href = URL.createObjectURL(blob);
+  });
+  </script>
+</body>
+</html>
